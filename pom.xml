@@ -5,9 +5,10 @@
 	<version>2.0.0</version>
 	<description>copy files to destine</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>Cp1252</project.build.sourceEncoding>
+		<java.version>11</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
-    	<maven.compiler.target>${java.version}</maven.compiler.target>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
 	</properties>
 	<build>
 		<plugins>
@@ -39,30 +40,28 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.6</version>
+				<version>3.6.0</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>changeenvironment.MyApp</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<appendAssemblyId>false</appendAssemblyId>
+					<finalName>${project.artifactId}-${project.version}</finalName>
+				</configuration>
 				<executions>
-					<!-- create executable -->
 					<execution>
-						<id>assembly-${project.artifactId}</id>
+						<id>make-assembly</id>
 						<phase>package</phase>
 						<goals>
 							<goal>single</goal>
 						</goals>
-						<configuration>
-							<appendAssemblyId>false</appendAssemblyId>
-							<finalName>
-								${project.artifactId}-${project.version}
-							</finalName>
-							<descriptorRefs>
-								<descriptorRef>jar-with-dependencies</descriptorRef>
-							</descriptorRefs>
-							<archive>
-								<manifest>
-									<mainClass>changeenvironment.MyApp</mainClass>
-								</manifest>
-							</archive>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>

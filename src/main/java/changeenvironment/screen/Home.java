@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import changeenvironment.EnvironmentVariables;
 import changeenvironment.TipoBancoDados;
 import changeenvironment.file.ReadConf;
 
@@ -30,6 +31,15 @@ public class Home implements Form {
 
 	JLabel labelBancoVS = Form.createLabelTitle("Banco de dados VS");
 	JLabel labelBancoVSDesc = Form.createLabel("Banco de dados VS");
+
+	JLabel labelJavaHome = Form.createLabelTitle("JAVA HOME");
+	JLabel labelJavaHomeDesc = Form.createLabel("...");
+
+	JLabel labelM2Home = Form.createLabelTitle("M2 HOME");
+	JLabel labelM2HomeDesc = Form.createLabel("...");
+
+	JLabel labelMavenHome = Form.createLabelTitle("MAVEN HOME");
+	JLabel labelMavenHomeDesc = Form.createLabel("...");
 	
 	@Override
 	public void addControls(JFrame frame) {
@@ -62,6 +72,27 @@ public class Home implements Form {
         linha4.add(labelBancoVSDesc);
         frame.add(linha4);
         //frame.add(Box.createVerticalStrut(15));
+
+        JPanel linha5 = Form.addLine();
+        frame.add(linha5);
+
+        JPanel linha6 = Form.addLine();
+        linha6.add(labelJavaHome);
+        linha6.add(Box.createHorizontalStrut(40));
+        linha6.add(labelJavaHomeDesc);
+        frame.add(linha6);
+
+        JPanel linha7 = Form.addLine();
+        linha7.add(labelM2Home);
+        linha7.add(Box.createHorizontalStrut(40));
+        linha7.add(labelM2HomeDesc);
+        frame.add(linha7);
+
+        JPanel linha8 = Form.addLine();
+        linha8.add(labelMavenHome);
+        linha8.add(Box.createHorizontalStrut(40));
+        linha8.add(labelMavenHomeDesc);
+        frame.add(linha8);
         
         frame.add(Box.createVerticalGlue());
 	}
@@ -81,6 +112,10 @@ public class Home implements Form {
         readConf = new ReadConf("C:/visualmix/config/VM_VisualStore_Adm.conf");
         bankNumber = Byte.valueOf(readConf.getTag("DEFAULT.TIPOCONEXAO"));
         labelBancoVSDesc.setText(TipoBancoDados.getById(bankNumber).name());
+        
+        labelJavaHomeDesc.setText(EnvironmentVariables.getValue("JAVA_HOME"));
+        labelM2HomeDesc.setText(EnvironmentVariables.getValue("M2_HOME"));
+        labelMavenHomeDesc.setText(EnvironmentVariables.getValue("MAVEN_HOME"));
 		frame.revalidate();
 		frame.repaint();
 	}

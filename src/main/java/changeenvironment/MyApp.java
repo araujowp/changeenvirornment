@@ -18,7 +18,7 @@ public class MyApp {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		try {
-			URL url = MyApp.class.getResource("/images/engrenagem.png"); // caminho que está funcionando!
+			URL url = MyApp.class.getResource("/images/engrenagem.png");
 
 			if (url != null) {
 				Image iconImage = new ImageIcon(url).getImage();
@@ -26,7 +26,7 @@ public class MyApp {
 				frame.setIconImage(iconImage);
 				setTaskbarIcon(iconImage);
 			} else {
-				System.err.println("Ícone não encontrado!");
+				System.err.println("Icone n�o encontrado!");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,7 +49,7 @@ public class MyApp {
 				}
 			}
 		}catch(Throwable t) {
-			System.err.println("Ícone não encontrado!");			
+			System.err.println("Icone n�o encontrado!");			
 		}
 	}
 
